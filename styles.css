@@ -275,32 +275,6 @@ section[id] {
   align-items: start;
 }
 
-.hero::before,
-.hero::after {
-  content: "";
-  position: absolute;
-  left: -3vw;
-  right: 46%;
-  z-index: 0;
-  height: 1px;
-  pointer-events: none;
-}
-
-.hero::before {
-  top: 31%;
-  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent) 82%, white), transparent);
-  box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 55%, transparent);
-  opacity: 0.62;
-}
-
-.hero::after {
-  top: 36%;
-  right: 56%;
-  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent-3) 78%, white), transparent);
-  box-shadow: 0 0 22px color-mix(in srgb, var(--accent-3) 42%, transparent);
-  opacity: 0.5;
-}
-
 .sparkle-field {
   position: absolute;
   inset: 4px -8vw -10px;
