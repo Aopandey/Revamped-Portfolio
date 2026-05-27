@@ -18,6 +18,22 @@ const projects = [
       "Built dashboards to surface research trends, top contributors, and major topic areas.",
       "Designed the system for non-technical users exploring AI research trends and startup opportunities."
     ],
+    challenges: [
+      "ICML pages and paper metadata were not available as one clean API export, so the collection layer needed resilient scraping and data cleanup.",
+      "PDF extraction produced inconsistent text because of layouts, headers, encoding issues, and merged line breaks.",
+      "Large-paper summarization required chunking and metadata filtering to stay within LLM token budgets.",
+      "FAISS and ChromaDB had different tradeoffs between precision, latency, and memory use."
+    ],
+    impact: [
+      "Processed and analyzed 2,600+ ICML 2024 papers through an end-to-end collection, retrieval, summarization, and dashboard workflow.",
+      "Surfaced research trends, top contributors, institutions, topic distributions, and research-area correlations.",
+      "Benchmarked retrieval behavior in the technical report, with FAISS showing stronger precision and ChromaDB showing lower-latency retrieval characteristics."
+    ],
+    improvements: [
+      "Add layout-aware PDF parsing for tables, figures, and multi-column papers.",
+      "Parallelize extraction and embedding jobs more aggressively for larger conference or multi-year datasets.",
+      "Add richer query templates and domain-specific embeddings for non-ICML corpora."
+    ],
     pipeline: [
       "ICML Papers",
       "PDF Extraction",
@@ -37,7 +53,9 @@ const projects = [
       "Streamlit",
       "Data Visualization"
     ],
-    links: []
+    links: [
+      { label: "GitHub", url: "https://github.com/Aopandey/Research-Paper-Analyzer" }
+    ]
   },
   {
     id: "mutual-learning",
@@ -57,6 +75,21 @@ const projects = [
       "Evaluated accuracy, precision, recall, and F1.",
       "Compared teacher-student pairings to understand when pseudo-labeling helps or hurts."
     ],
+    challenges: [
+      "Pseudo-labeling can amplify early model mistakes, especially when one model becomes overconfident on noisy unlabeled samples.",
+      "Different model families needed consistent preprocessing so comparisons were meaningful.",
+      "The experiment required tracking teacher-student pairings across multiple evaluation metrics rather than relying on accuracy alone."
+    ],
+    impact: [
+      "Created a reproducible capstone workflow for studying when heterogeneous NLP models help each other through unlabeled data.",
+      "Compared Naive Bayes, SVM, and MLP behavior under mutual-learning and pseudo-labeling setups.",
+      "Produced a report-backed analysis of model pairings, preprocessing decisions, and evaluation tradeoffs."
+    ],
+    improvements: [
+      "Add confidence calibration before accepting pseudo-labels.",
+      "Test transformer embeddings as a stronger text representation baseline.",
+      "Add active-learning loops so uncertain samples can be prioritized for human review."
+    ],
     stack: [
       "Python",
       "scikit-learn",
@@ -66,7 +99,10 @@ const projects = [
       "Classification",
       "Semi-supervised Learning"
     ],
-    links: []
+    links: [
+      { label: "GitHub", url: "https://github.com/jp1779/Capstone_Project" },
+      { label: "Report", url: "https://drive.google.com/file/d/1owcMzd3VMgxlZp8xTyLK9ZNRtAJaeg0-/view" }
+    ]
   },
   {
     id: "diabetes",
@@ -86,6 +122,21 @@ const projects = [
       "Emphasized recall and ROC-AUC for screening usefulness.",
       "Used diagnostics to identify HbA1c and blood glucose as key signals."
     ],
+    challenges: [
+      "Class imbalance made accuracy a weak success metric for a screening-oriented model.",
+      "Preprocessing needed to preserve clinically meaningful signals while handling categorical values and outliers.",
+      "Model comparison had to balance recall, ROC-AUC, interpretability, and overfitting risk."
+    ],
+    impact: [
+      "Built a complete supervised ML workflow over a 100,000-sample diabetes dataset.",
+      "Compared classical and neural models using metrics better suited to screening contexts.",
+      "Identified HbA1c and blood glucose as important predictive signals through model diagnostics."
+    ],
+    improvements: [
+      "Add probability calibration and decision-threshold analysis for clinical-style screening tradeoffs.",
+      "Package preprocessing and inference into a reproducible pipeline artifact.",
+      "Explore interpretable model explanations for patient-facing or analyst-facing review."
+    ],
     stack: [
       "Python",
       "scikit-learn",
@@ -96,7 +147,9 @@ const projects = [
       "MLP",
       "Random Forest"
     ],
-    links: []
+    links: [
+      { label: "GitHub", url: "https://github.com/RajaATAli/CSCI365_481_Final_Project" }
+    ]
   },
   {
     id: "bushels",
@@ -116,8 +169,26 @@ const projects = [
       "Created reusable query suite for yield, region, and time-window analysis.",
       "Documented assumptions, constraints, and edge cases."
     ],
+    challenges: [
+      "Agricultural yield data needed a schema that avoided duplication while still supporting analytical questions.",
+      "The project required clear assumptions about entities, constraints, and time-window queries.",
+      "Validation queries had to confirm both relational integrity and practical analytical usefulness."
+    ],
+    impact: [
+      "Produced a normalized SQL Server database design for corn and soybean yield analysis.",
+      "Created reusable SQL queries for region, yield, and time-window exploration.",
+      "Documented schema decisions so another analyst could understand constraints and edge cases."
+    ],
+    improvements: [
+      "Add a larger real-world dataset and import scripts.",
+      "Build a small dashboard layer over the SQL query suite.",
+      "Add stored procedures or views for the most common analytics workflows."
+    ],
     stack: ["SQL", "SQL Server 2022", "Relational Databases", "Data Modeling", "Analytics"],
-    links: []
+    links: [
+      { label: "GitHub", url: "https://github.com/Aopandey/5NF-Counts-of-Bushels-Project" },
+      { label: "Report", url: "https://drive.google.com/file/d/11g0LNbEw1lXqfwNd4_bknOUOafn1h8pD/view" }
+    ]
   }
 ];
 
@@ -197,6 +268,94 @@ const skillMap = {
   ChatGPT: []
 };
 
+const skillEvidence = {
+  Python: [
+    { type: "Project", projectId: "icml", detail: "Data collection, PDF parsing, retrieval, summarization, and dashboard workflows." },
+    { type: "Project", projectId: "mutual-learning", detail: "NLP preprocessing and semi-supervised model experiments." },
+    { type: "Project", projectId: "diabetes", detail: "EDA, class balancing, model benchmarking, and diagnostics." },
+    { type: "Research", label: "Biomedical literature summarization", detail: "Retrieval, metadata enrichment, ranking, and evaluation pipeline work." }
+  ],
+  SQL: [
+    { type: "Project", projectId: "bushels", detail: "Normalized schema design and analytical query suite." },
+    { type: "Experience", label: "Legislative Services Agency", detail: "SQL Server ETL workflows for legislative datasets." }
+  ],
+  Java: [{ type: "Coursework", label: "Purdue CS foundation", detail: "Core programming and CS coursework background." }],
+  R: [{ type: "Coursework", label: "Statistics and data coursework", detail: "Probability, statistics, and data-analysis foundation." }],
+  PyTorch: [{ type: "Coursework", label: "AI/ML toolkit", detail: "Part of the broader ML framework stack for research and engineering roles." }],
+  "scikit-learn": [
+    { type: "Project", projectId: "mutual-learning", detail: "Naive Bayes, SVM, MLP, and classification metrics." },
+    { type: "Project", projectId: "diabetes", detail: "Decision Tree, Random Forest, SVM, MLP, ROC-AUC, and recall analysis." }
+  ],
+  XGBoost: [{ type: "Toolkit", label: "AI/ML modeling toolkit", detail: "Tree-based modeling skill aligned with supervised ML pipeline work." }],
+  "Hugging Face Transformers": [{ type: "Toolkit", label: "Transformer NLP toolkit", detail: "Relevant to LLM, summarization, and NLP systems work." }],
+  NumPy: [
+    { type: "Project", projectId: "mutual-learning", detail: "Feature processing and model-evaluation utilities." },
+    { type: "Project", projectId: "diabetes", detail: "Numerical processing for supervised ML experiments." }
+  ],
+  Pandas: [
+    { type: "Project", projectId: "icml", detail: "Metadata tables and research-paper analysis." },
+    { type: "Project", projectId: "mutual-learning", detail: "Dataset preparation and evaluation tables." },
+    { type: "Project", projectId: "diabetes", detail: "EDA, cleaning, and feature preparation." },
+    { type: "Experience", label: "Legislative Services Agency", detail: "Dataset validation and preprocessing workflows." }
+  ],
+  SciPy: [{ type: "Project", projectId: "diabetes", detail: "Statistical and numerical support for ML diagnostics." }],
+  LangChain: [
+    { type: "Project", projectId: "icml", detail: "Metadata filtering for research-paper retrieval and summarization." },
+    { type: "Research", label: "Biomedical literature summarization", detail: "RAG-style workflow design and summary orchestration." }
+  ],
+  "OpenAI API": [
+    { type: "Research", label: "Biomedical literature summarization", detail: "GPT-4o-mini used in multi-model summarization workflows." },
+    { type: "Project", projectId: "icml", detail: "Technical report describes OpenAI embedding experiments." }
+  ],
+  "Gemini API": [
+    { type: "Project", projectId: "icml", detail: "Gemini 1.5 Flash classification and summarization." },
+    { type: "Research", label: "Biomedical literature summarization", detail: "Gemini 2.0 Flash used in multi-LLM summary workflows." }
+  ],
+  "Claude API": [{ type: "Toolkit", label: "LLM development toolkit", detail: "Listed LLM API skill for evaluation, prototyping, and assistant workflows." }],
+  FAISS: [{ type: "Project", projectId: "icml", detail: "Vector indexing and semantic retrieval over paper chunks." }],
+  ChromaDB: [{ type: "Project", projectId: "icml", detail: "Vector database retrieval path for research-paper exploration." }],
+  "Prompt Engineering": [
+    { type: "Project", projectId: "icml", detail: "Targeted prompts for paper summarization and metadata extraction." },
+    { type: "Research", label: "Biomedical literature summarization", detail: "Prompted multi-model summaries with validation and evaluation." }
+  ],
+  "Retrieval-Augmented Generation": [
+    { type: "Project", projectId: "icml", detail: "Retrieval plus LLM summarization over ICML papers." },
+    { type: "Research", label: "Biomedical literature summarization", detail: "Retrieval, ranking, summarization, and evaluation pipeline." }
+  ],
+  PySpark: [{ type: "Toolkit", label: "Scalable data toolkit", detail: "Relevant to large-data ETL and data/ML pipeline roles." }],
+  Docker: [{ type: "Project", projectId: "icml", detail: "Technical report describes local LLM experiments with Ollama containers." }],
+  Kubernetes: [{ type: "Toolkit", label: "MLOps toolkit", detail: "Deployment-oriented skill aligned with scalable AI/ML systems." }],
+  "AWS EC2": [{ type: "Toolkit", label: "Cloud compute toolkit", detail: "Relevant to hosting data and model workflows." }],
+  "AWS S3": [{ type: "Toolkit", label: "Cloud storage toolkit", detail: "Relevant to storing datasets, model artifacts, and pipeline outputs." }],
+  "AWS Lambda": [{ type: "Toolkit", label: "Serverless toolkit", detail: "Relevant to event-driven data processing and lightweight automation." }],
+  MLflow: [{ type: "Toolkit", label: "MLOps toolkit", detail: "Experiment tracking skill aligned with model benchmarking workflows." }],
+  "SQL Server": [
+    { type: "Project", projectId: "bushels", detail: "Relational database implementation." },
+    { type: "Experience", label: "Legislative Services Agency", detail: "SQL Server ETL and BI workflows." }
+  ],
+  "SQL Server 2022": [{ type: "Project", projectId: "bushels", detail: "Primary database platform for the normalized schema project." }],
+  "Git/GitHub": [
+    { type: "Project", projectId: "icml", detail: "Repository-linked research-paper analyzer." },
+    { type: "Project", projectId: "mutual-learning", detail: "Capstone repository and report artifacts." },
+    { type: "Project", projectId: "diabetes", detail: "Final project repository." },
+    { type: "Project", projectId: "bushels", detail: "Database project repository." }
+  ],
+  Streamlit: [
+    { type: "Project", projectId: "icml", detail: "Dashboard interface for research-paper exploration." },
+    { type: "Research", label: "Biomedical literature summarization", detail: "Prototype interface for retrieval and summary workflows." }
+  ],
+  Tableau: [{ type: "Experience", label: "Legislative Services Agency", detail: "BI reporting and analysis workflows." }],
+  "Power BI": [{ type: "Experience", label: "Legislative Services Agency", detail: "Reporting and dashboard support for structured datasets." }],
+  Matplotlib: [
+    { type: "Project", projectId: "diabetes", detail: "EDA and model diagnostic visualizations." },
+    { type: "Project", projectId: "icml", detail: "Technical report describes PyPlot/Seaborn dashboard visualizations." }
+  ],
+  Cursor: [{ type: "Toolkit", label: "AI development workflow", detail: "Used as part of the modern AI-assisted engineering toolkit." }],
+  "Claude Code": [{ type: "Toolkit", label: "AI development workflow", detail: "Used for codebase iteration, debugging, and implementation support." }],
+  "GitHub Copilot": [{ type: "Toolkit", label: "AI development workflow", detail: "Assistant-based development tool for faster coding workflows." }],
+  ChatGPT: [{ type: "Toolkit", label: "AI development workflow", detail: "Used for research, drafting, debugging, and technical planning." }]
+};
+
 const categories = ["All", "LLM/RAG", "Machine Learning", "Data Engineering", "NLP"];
 
 const dom = {
@@ -229,6 +388,14 @@ function projectById(id) {
   return projects.find((project) => project.id === id);
 }
 
+function evidenceForSkill(skill) {
+  return skillEvidence[skill] || [];
+}
+
+function projectIdsForSkill(skill) {
+  return [...new Set(evidenceForSkill(skill).map((item) => item.projectId).filter(Boolean))];
+}
+
 function renderPipeline(steps, label = "System pipeline") {
   if (!steps || !steps.length) return "";
   const formatStep = (step) => escapeHtml(step).replaceAll("/", "/<wbr>").replaceAll("-", "-<wbr>");
@@ -238,6 +405,20 @@ function renderPipeline(steps, label = "System pipeline") {
       <ol class="pipeline-diagram">
         ${steps.map((step) => `<li>${formatStep(step)}</li>`).join("")}
       </ol>
+    </div>
+  `;
+}
+
+function renderList(items) {
+  if (!items || !items.length) return "";
+  return `<ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
+}
+
+function renderLinks(links, className = "button button-primary") {
+  if (!links || !links.length) return "";
+  return `
+    <div class="feature-actions case-study-links">
+      ${links.map((link) => `<a class="${className}" href="${escapeHtml(link.url)}" target="_blank" rel="noreferrer">${escapeHtml(link.label)}</a>`).join("")}
     </div>
   `;
 }
@@ -256,7 +437,7 @@ function renderFilters() {
 
 function renderProjects() {
   const filtered = projects.filter((project) => activeFilter === "All" || project.categories.includes(activeFilter));
-  const relatedIds = activeSkill ? skillMap[activeSkill] || [] : [];
+  const relatedIds = activeSkill ? projectIdsForSkill(activeSkill) : [];
 
   dom.projectGrid.innerHTML = filtered
     .map((project) => {
@@ -321,21 +502,33 @@ function renderSkillPanel(skill) {
     return;
   }
 
-  const related = (skillMap[skill] || []).map(projectById).filter(Boolean);
-  const relatedMarkup = related.length
-    ? `<ul>${related.map((project) => `<li>${escapeHtml(project.title)}</li>`).join("")}</ul>`
-    : "<p>This skill is part of the broader toolkit listed on the resume; no specific project card is pinned to it yet.</p>";
+  const evidence = evidenceForSkill(skill);
+  const evidenceMarkup = evidence.length
+    ? `<div class="evidence-list">${evidence
+        .map((item) => {
+          const project = item.projectId ? projectById(item.projectId) : null;
+          const title = project ? project.title : item.label;
+          return `
+            <article class="evidence-item">
+              <span>${escapeHtml(item.type)}</span>
+              <strong>${escapeHtml(title)}</strong>
+              <p>${escapeHtml(item.detail)}</p>
+            </article>
+          `;
+        })
+        .join("")}</div>`
+    : "<p>This skill is listed as part of the broader toolkit, but it is not pinned to a project yet.</p>";
 
   dom.skillPanel.innerHTML = `
     <p class="status-kicker">Selected Skill</p>
     <h3>${escapeHtml(skill)}</h3>
-    <p>Related portfolio evidence:</p>
-    ${relatedMarkup}
+    <p>Evidence across projects, experience, coursework, and tooling:</p>
+    ${evidenceMarkup}
     <button class="text-button" type="button" data-clear-skill>Clear selection</button>
   `;
 }
 
-function openProject(projectId) {
+function openProjectLegacy(projectId) {
   const project = projectById(projectId);
   if (!project) return;
 
@@ -376,6 +569,75 @@ function openProject(projectId) {
 
 function closeProject() {
   dom.dialog.close();
+}
+
+function openProject(projectId) {
+  const project = projectById(projectId);
+  if (!project) return;
+
+  dom.dialogContent.innerHTML = `
+    <div class="dialog-body case-study">
+      <div class="case-study-hero">
+        <p class="card-kicker">${escapeHtml(project.type)} · ${escapeHtml(project.dates)}</p>
+        <h2>${escapeHtml(project.title)}</h2>
+        <p>${escapeHtml(project.summary)}</p>
+      </div>
+
+      <section class="case-study-section">
+        <h3>Overview</h3>
+        <p>${escapeHtml(project.summary)}</p>
+      </section>
+
+      <section class="case-study-section">
+        <h3>Problem</h3>
+        <p>${escapeHtml(project.problem)}</p>
+      </section>
+
+      <section class="case-study-section">
+        <h3>System Design</h3>
+        <p>${escapeHtml(project.built)}</p>
+        ${renderPipeline(project.pipeline, "System flow")}
+      </section>
+
+      <section class="case-study-section">
+        <h3>What I Built</h3>
+        ${renderList(project.details)}
+      </section>
+
+      <section class="case-study-section">
+        <h3>Technical Challenges</h3>
+        ${renderList(project.challenges)}
+      </section>
+
+      <section class="case-study-section">
+        <h3>Results / Impact</h3>
+        ${renderList(project.impact)}
+      </section>
+
+      <section class="case-study-section">
+        <h3>What I Would Improve</h3>
+        ${renderList(project.improvements)}
+      </section>
+
+      <section class="case-study-section">
+        <h3>Tech Stack</h3>
+        <div class="tag-row">
+          ${project.stack.map((tech) => `<span class="tech-badge">${escapeHtml(tech)}</span>`).join("")}
+        </div>
+      </section>
+
+      <section class="case-study-section">
+        <h3>Links</h3>
+        ${renderLinks(project.links, "button")}
+      </section>
+    </div>
+  `;
+
+  if (typeof dom.dialog.showModal === "function") {
+    dom.dialog.showModal();
+  } else {
+    dom.dialog.setAttribute("open", "");
+  }
 }
 
 function setFilter(filter) {
