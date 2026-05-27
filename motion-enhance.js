@@ -87,35 +87,111 @@ function syncThemeToggle(theme, instant = false) {
   }
 }
 
-function initInfiniteGrid() {
-  const grid = document.querySelector("[data-infinite-grid]");
-  if (!grid) return;
+function hexToRgb(hex) {
+  const value = hex.trim().replace("#", "");
+  const normalized = value.length === 3 ? value.split("").map((char) => char + char).join("") : value;
+  const parsed = Number.parseInt(normalized, 16);
+  if (Number.isNaN(parsed)) return [255, 138, 61];
+  return [(parsed >> 16) & 255, (parsed >> 8) & 255, parsed & 255];
+}
 
-  let offsetX = 0;
-  let offsetY = 0;
+function initSparkles() {
+  const field = document.querySelector("[data-sparkles]");
+  if (!field) return;
+
+  const canvas = document.createElement("canvas");
+  const context = canvas.getContext("2d");
+  if (!context) return;
+
+  field.append(canvas);
+
+  let width = 0;
+  let height = 0;
   let frameId = 0;
+  let particles = [];
+  let palette = [];
+  const density = 0.00013;
 
-  const setMousePosition = (event) => {
-    grid.style.setProperty("--grid-mouse-x", `${event.clientX}px`);
-    grid.style.setProperty("--grid-mouse-y", `${event.clientY}px`);
+  const readPalette = () => {
+    const styles = getComputedStyle(document.documentElement);
+    palette = [
+      hexToRgb(styles.getPropertyValue("--accent")),
+      hexToRgb(styles.getPropertyValue("--accent-3")),
+      hexToRgb(styles.getPropertyValue("--accent-2")),
+      hexToRgb(styles.getPropertyValue("--text")),
+    ];
   };
 
-  const tick = () => {
-    offsetX = (offsetX + 0.28) % 40;
-    offsetY = (offsetY + 0.28) % 40;
-    grid.style.setProperty("--grid-x", `${offsetX}px`);
-    grid.style.setProperty("--grid-y", `${offsetY}px`);
-    frameId = requestAnimationFrame(tick);
+  const makeParticle = () => {
+    const size = 0.45 + Math.random() * 1.45;
+    return {
+      x: Math.random() * width,
+      y: Math.random() * height,
+      size,
+      alpha: 0.18 + Math.random() * 0.78,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.18 + Math.random() * 0.55,
+      drift: -0.1 + Math.random() * 0.2,
+      color: palette[Math.floor(Math.random() * palette.length)],
+    };
   };
 
-  window.addEventListener("pointermove", setMousePosition, { passive: true });
-  frameId = requestAnimationFrame(tick);
+  const resize = () => {
+    const rect = field.getBoundingClientRect();
+    width = Math.max(1, Math.floor(rect.width));
+    height = Math.max(1, Math.floor(rect.height));
+    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.floor(width * ratio);
+    canvas.height = Math.floor(height * ratio);
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+    context.setTransform(ratio, 0, 0, ratio, 0, 0);
+    readPalette();
+    const count = Math.min(120, Math.max(46, Math.floor(width * height * density)));
+    particles = Array.from({ length: count }, makeParticle);
+  };
+
+  const draw = () => {
+    context.clearRect(0, 0, width, height);
+
+    for (const particle of particles) {
+      particle.phase += 0.035 * particle.speed;
+      particle.y -= particle.speed;
+      particle.x += particle.drift;
+
+      if (particle.y < -10) {
+        particle.y = height + 10;
+        particle.x = Math.random() * width;
+      }
+      if (particle.x < -10) particle.x = width + 10;
+      if (particle.x > width + 10) particle.x = -10;
+
+      const twinkle = 0.38 + Math.sin(particle.phase) * 0.28;
+      const alpha = Math.max(0.08, particle.alpha * twinkle);
+      const [r, g, b] = particle.color;
+
+      context.beginPath();
+      context.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
+      context.shadowColor = `rgba(${r}, ${g}, ${b}, ${alpha * 0.7})`;
+      context.shadowBlur = 7;
+      context.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+      context.fill();
+    }
+
+    frameId = requestAnimationFrame(draw);
+  };
+
+  resize();
+  frameId = requestAnimationFrame(draw);
+  window.addEventListener("resize", resize, { passive: true });
+  window.addEventListener("portfolio-theme-change", resize);
 
   window.addEventListener(
     "pagehide",
     () => {
       cancelAnimationFrame(frameId);
-      window.removeEventListener("pointermove", setMousePosition);
+      window.removeEventListener("resize", resize);
+      window.removeEventListener("portfolio-theme-change", resize);
     },
     { once: true }
   );
@@ -132,7 +208,7 @@ window.addEventListener("portfolio-theme-change", (event) => {
 });
 
 if (!reducedMotion) {
-  initInfiniteGrid();
+  initSparkles();
 
   const progressBar = document.querySelector("[data-scroll-progress]");
   if (progressBar) {

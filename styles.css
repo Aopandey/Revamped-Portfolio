@@ -50,7 +50,11 @@ body {
   margin: 0;
   min-width: 320px;
   color: var(--text);
-  background: var(--bg);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    var(--bg);
+  background-size: 56px 56px;
   letter-spacing: 0;
 }
 
@@ -58,53 +62,12 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: 0;
   pointer-events: none;
   background:
     linear-gradient(120deg, rgba(255, 138, 61, 0.18), transparent 34%),
     linear-gradient(300deg, rgba(181, 74, 90, 0.12), transparent 38%),
     linear-gradient(18deg, rgba(111, 183, 168, 0.08), transparent 30%);
   opacity: 0.9;
-}
-
-.infinite-grid-bg {
-  --grid-x: 0px;
-  --grid-y: 0px;
-  --grid-mouse-x: 50vw;
-  --grid-mouse-y: 28vh;
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  color: color-mix(in srgb, var(--muted) 72%, var(--accent));
-  pointer-events: none;
-}
-
-.infinite-grid-layer {
-  position: absolute;
-  inset: -80px;
-  background-image:
-    linear-gradient(90deg, currentColor 1px, transparent 1px),
-    linear-gradient(180deg, currentColor 1px, transparent 1px);
-  background-position: var(--grid-x) var(--grid-y);
-  background-size: 40px 40px;
-}
-
-.infinite-grid-layer-base {
-  opacity: 0.055;
-}
-
-.infinite-grid-layer-spotlight {
-  opacity: 0.28;
-  color: color-mix(in srgb, var(--accent) 78%, var(--text));
-  mask-image: radial-gradient(300px circle at var(--grid-mouse-x) var(--grid-mouse-y), black, transparent);
-  -webkit-mask-image: radial-gradient(300px circle at var(--grid-mouse-x) var(--grid-mouse-y), black, transparent);
-}
-
-main,
-.site-footer {
-  position: relative;
-  z-index: 1;
 }
 
 img {
@@ -294,18 +257,37 @@ section[id] {
 }
 
 .hero {
+  position: relative;
   min-height: calc(100vh - 72px);
   display: grid;
   align-items: center;
   padding-top: 64px;
   padding-bottom: 54px;
+  overflow: hidden;
 }
 
 .hero-grid {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
   gap: 48px;
   align-items: start;
+}
+
+.sparkle-field {
+  position: absolute;
+  inset: 24px -8vw 10px;
+  z-index: 0;
+  opacity: 0.88;
+  pointer-events: none;
+  mask-image: radial-gradient(640px 360px at 30% 38%, black, transparent 72%);
+  -webkit-mask-image: radial-gradient(640px 360px at 30% 38%, black, transparent 72%);
+}
+
+.sparkle-field canvas {
+  width: 100%;
+  height: 100%;
 }
 
 .eyebrow,
