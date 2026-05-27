@@ -217,11 +217,18 @@ button {
 .theme-toggle {
   width: 42px;
   height: 42px;
+  padding: 0;
+  color: color-mix(in srgb, var(--text) 82%, var(--accent));
+  touch-action: manipulation;
 }
 
-.theme-icon {
-  font-size: 1.15rem;
-  line-height: 1;
+.theme-svg {
+  overflow: visible;
+}
+
+.theme-rays {
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
 .nav-toggle {

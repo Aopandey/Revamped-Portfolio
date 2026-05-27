@@ -377,12 +377,16 @@ function initTheme() {
   const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
   const theme = stored || (prefersLight ? "light" : "dark");
   document.documentElement.dataset.theme = theme;
+  document.documentElement.classList.toggle("dark", theme === "dark");
+  window.dispatchEvent(new CustomEvent("portfolio-theme-change", { detail: { theme, initial: true } }));
 }
 
 function toggleTheme() {
   const next = document.documentElement.dataset.theme === "light" ? "dark" : "light";
   document.documentElement.dataset.theme = next;
+  document.documentElement.classList.toggle("dark", next === "dark");
   localStorage.setItem("portfolio-theme", next);
+  window.dispatchEvent(new CustomEvent("portfolio-theme-change", { detail: { theme: next, initial: false } }));
 }
 
 function initReveal() {
