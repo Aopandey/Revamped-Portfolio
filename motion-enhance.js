@@ -87,6 +87,40 @@ function syncThemeToggle(theme, instant = false) {
   }
 }
 
+function initInfiniteGrid() {
+  const grid = document.querySelector("[data-infinite-grid]");
+  if (!grid) return;
+
+  let offsetX = 0;
+  let offsetY = 0;
+  let frameId = 0;
+
+  const setMousePosition = (event) => {
+    grid.style.setProperty("--grid-mouse-x", `${event.clientX}px`);
+    grid.style.setProperty("--grid-mouse-y", `${event.clientY}px`);
+  };
+
+  const tick = () => {
+    offsetX = (offsetX + 0.28) % 40;
+    offsetY = (offsetY + 0.28) % 40;
+    grid.style.setProperty("--grid-x", `${offsetX}px`);
+    grid.style.setProperty("--grid-y", `${offsetY}px`);
+    frameId = requestAnimationFrame(tick);
+  };
+
+  window.addEventListener("pointermove", setMousePosition, { passive: true });
+  frameId = requestAnimationFrame(tick);
+
+  window.addEventListener(
+    "pagehide",
+    () => {
+      cancelAnimationFrame(frameId);
+      window.removeEventListener("pointermove", setMousePosition);
+    },
+    { once: true }
+  );
+}
+
 syncThemeToggle(document.documentElement.dataset.theme, true);
 
 window.addEventListener("portfolio-theme-change", (event) => {
@@ -98,6 +132,8 @@ window.addEventListener("portfolio-theme-change", (event) => {
 });
 
 if (!reducedMotion) {
+  initInfiniteGrid();
+
   const progressBar = document.querySelector("[data-scroll-progress]");
   if (progressBar) {
     scroll((progress) => {
