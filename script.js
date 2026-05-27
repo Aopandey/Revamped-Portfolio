@@ -18,6 +18,14 @@ const projects = [
       "Built dashboards to surface research trends, top contributors, and major topic areas.",
       "Designed the system for non-technical users exploring AI research trends and startup opportunities."
     ],
+    pipeline: [
+      "ICML Papers",
+      "PDF Extraction",
+      "Chunking/Metadata",
+      "FAISS/ChromaDB",
+      "Gemini Classification/Summarization",
+      "Dashboard Insights"
+    ],
     stack: [
       "Python",
       "LangChain",
@@ -221,6 +229,18 @@ function projectById(id) {
   return projects.find((project) => project.id === id);
 }
 
+function renderPipeline(steps, label = "System pipeline") {
+  if (!steps || !steps.length) return "";
+  return `
+    <div class="pipeline-block" aria-label="${escapeHtml(label)}">
+      <p class="pipeline-title">${escapeHtml(label)}</p>
+      <ol class="pipeline-diagram">
+        ${steps.map((step) => `<li>${escapeHtml(step)}</li>`).join("")}
+      </ol>
+    </div>
+  `;
+}
+
 function renderFilters() {
   dom.filters.innerHTML = categories
     .map(
@@ -251,6 +271,7 @@ function renderProjects() {
           </div>
           <h3>${escapeHtml(project.title)}</h3>
           <p>${escapeHtml(project.summary)}</p>
+          ${renderPipeline(project.pipeline, "Pipeline")}
           <div class="tag-row">
             ${project.stack.slice(0, 7).map((tech) => `<span class="tech-badge">${escapeHtml(tech)}</span>`).join("")}
           </div>
@@ -326,6 +347,7 @@ function openProject(projectId) {
       <p>${escapeHtml(project.problem)}</p>
       <h3>What I built</h3>
       <p>${escapeHtml(project.built)}</p>
+      ${renderPipeline(project.pipeline, "Pipeline")}
       <h3>Details</h3>
       <ul>
         ${project.details.map((detail) => `<li>${escapeHtml(detail)}</li>`).join("")}

@@ -554,6 +554,72 @@ p {
   font-weight: 760;
 }
 
+.pipeline-block {
+  margin-top: 24px;
+  padding: 16px;
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--line));
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 10%, transparent), transparent 44%),
+    color-mix(in srgb, var(--bg-elevated) 86%, transparent);
+  border-radius: var(--radius);
+}
+
+.pipeline-title {
+  margin: 0 0 12px;
+  color: var(--accent-3);
+  font-size: 0.78rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.pipeline-diagram {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pipeline-diagram li {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 44px;
+  min-width: min(100%, 132px);
+  flex: 1 1 132px;
+  padding: 9px 12px;
+  color: var(--text);
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 92%, transparent), color-mix(in srgb, var(--surface-2) 60%, transparent));
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 760;
+  line-height: 1.22;
+  text-align: center;
+}
+
+.pipeline-diagram li::after {
+  content: "→";
+  position: absolute;
+  top: 50%;
+  right: -18px;
+  color: var(--accent);
+  font-weight: 900;
+  transform: translateY(-52%);
+}
+
+.pipeline-diagram li:last-child {
+  color: #21130a;
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--accent), var(--accent-3));
+}
+
+.pipeline-diagram li:last-child::after {
+  display: none;
+}
+
 .feature-side {
   display: grid;
   gap: 20px;
@@ -661,6 +727,22 @@ p {
 .project-card p {
   margin: 0;
   color: var(--muted);
+}
+
+.project-card .pipeline-block {
+  margin-top: 0;
+  padding: 14px;
+}
+
+.project-card .pipeline-diagram {
+  gap: 8px 18px;
+}
+
+.project-card .pipeline-diagram li {
+  min-height: 38px;
+  min-width: min(100%, 116px);
+  flex-basis: 116px;
+  font-size: 0.72rem;
 }
 
 .project-footer {
@@ -1034,6 +1116,25 @@ p {
   .contact-card,
   .project-card {
     padding: 18px;
+  }
+
+  .pipeline-diagram {
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .pipeline-diagram li,
+  .project-card .pipeline-diagram li {
+    flex-basis: 100%;
+    min-width: 0;
+  }
+
+  .pipeline-diagram li::after {
+    top: auto;
+    right: 50%;
+    bottom: -21px;
+    content: "↓";
+    transform: translateX(50%);
   }
 
   .metric-list div {
