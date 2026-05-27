@@ -598,6 +598,8 @@ p {
   font-weight: 760;
   line-height: 1.22;
   text-align: center;
+  overflow-wrap: anywhere;
+  word-break: normal;
 }
 
 .pipeline-diagram li::after {
@@ -739,7 +741,7 @@ p {
 }
 
 .project-card .pipeline-diagram li {
-  min-height: 38px;
+  min-height: 44px;
   min-width: min(100%, 116px);
   flex-basis: 116px;
   font-size: 0.72rem;

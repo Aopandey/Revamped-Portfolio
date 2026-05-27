@@ -231,11 +231,12 @@ function projectById(id) {
 
 function renderPipeline(steps, label = "System pipeline") {
   if (!steps || !steps.length) return "";
+  const formatStep = (step) => escapeHtml(step).replaceAll("/", "/<wbr>").replaceAll("-", "-<wbr>");
   return `
     <div class="pipeline-block" aria-label="${escapeHtml(label)}">
       <p class="pipeline-title">${escapeHtml(label)}</p>
       <ol class="pipeline-diagram">
-        ${steps.map((step) => `<li>${escapeHtml(step)}</li>`).join("")}
+        ${steps.map((step) => `<li>${formatStep(step)}</li>`).join("")}
       </ol>
     </div>
   `;
