@@ -110,7 +110,7 @@ function initSparkles() {
   let frameId = 0;
   let particles = [];
   let palette = [];
-  const density = 0.00013;
+  const density = 0.00023;
 
   const readPalette = () => {
     const styles = getComputedStyle(document.documentElement);
@@ -123,12 +123,12 @@ function initSparkles() {
   };
 
   const makeParticle = () => {
-    const size = 0.45 + Math.random() * 1.45;
+    const size = 0.65 + Math.random() * 2.15;
     return {
       x: Math.random() * width,
       y: Math.random() * height,
       size,
-      alpha: 0.18 + Math.random() * 0.78,
+      alpha: 0.32 + Math.random() * 0.68,
       phase: Math.random() * Math.PI * 2,
       speed: 0.18 + Math.random() * 0.55,
       drift: -0.1 + Math.random() * 0.2,
@@ -147,7 +147,7 @@ function initSparkles() {
     canvas.style.height = `${height}px`;
     context.setTransform(ratio, 0, 0, ratio, 0, 0);
     readPalette();
-    const count = Math.min(120, Math.max(46, Math.floor(width * height * density)));
+    const count = Math.min(210, Math.max(84, Math.floor(width * height * density)));
     particles = Array.from({ length: count }, makeParticle);
   };
 
@@ -166,14 +166,14 @@ function initSparkles() {
       if (particle.x < -10) particle.x = width + 10;
       if (particle.x > width + 10) particle.x = -10;
 
-      const twinkle = 0.38 + Math.sin(particle.phase) * 0.28;
-      const alpha = Math.max(0.08, particle.alpha * twinkle);
+      const twinkle = 0.56 + Math.sin(particle.phase) * 0.34;
+      const alpha = Math.max(0.14, particle.alpha * twinkle);
       const [r, g, b] = particle.color;
 
       context.beginPath();
       context.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
       context.shadowColor = `rgba(${r}, ${g}, ${b}, ${alpha * 0.7})`;
-      context.shadowBlur = 7;
+      context.shadowBlur = 10;
       context.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
       context.fill();
     }
