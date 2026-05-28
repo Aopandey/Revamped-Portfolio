@@ -1179,24 +1179,29 @@ p {
 
 .personal-grid figure {
   position: relative;
+  display: grid;
+  place-items: center;
   min-width: 0;
   margin: 0;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   aspect-ratio: 1 / 1;
-  background: var(--surface-2);
+  background:
+    radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--surface-2) 82%, transparent), var(--bg-elevated)),
+    var(--surface-2);
 }
 
 .personal-grid img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: calc(100% - 18px);
+  height: calc(100% - 18px);
+  object-fit: contain;
+  image-rendering: auto;
   transition: transform 240ms ease, filter 240ms ease;
 }
 
 .personal-grid figure:hover img {
-  transform: scale(1.04);
+  transform: scale(1.015);
   filter: saturate(1.08);
 }
 
