@@ -503,6 +503,12 @@ p {
   max-width: 780px;
 }
 
+.section-heading p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.65;
+}
+
 .about-copy {
   color: var(--muted);
   font-size: 1.02rem;
