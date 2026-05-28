@@ -1193,15 +1193,26 @@ p {
 }
 
 .personal-grid img {
-  width: calc(100% - 18px);
-  height: calc(100% - 18px);
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 57%;
   image-rendering: auto;
   transition: transform 240ms ease, filter 240ms ease;
 }
 
+.personal-grid figure:nth-child(1) img {
+  object-position: center 63%;
+}
+
+.personal-grid figure:nth-child(2) img,
+.personal-grid figure:nth-child(3) img,
+.personal-grid figure:nth-child(4) img {
+  object-position: center 57%;
+}
+
 .personal-grid figure:hover img {
-  transform: scale(1.015);
+  transform: scale(1.025);
   filter: saturate(1.08);
 }
 

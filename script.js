@@ -55,7 +55,7 @@ const projects = [
     ],
     links: [
       { label: "GitHub", url: "https://github.com/Aopandey/Research-Paper-Analyzer" },
-      { label: "Report", url: "https://drive.google.com/file/d/1P7V19IM9IuX5c2VeYuBFIIGPdsXjTAQX/view?usp=sharing" }
+      { label: "Writeup", url: "https://drive.google.com/file/d/1P7V19IM9IuX5c2VeYuBFIIGPdsXjTAQX/view?usp=sharing" }
     ]
   },
   {
@@ -102,7 +102,7 @@ const projects = [
     ],
     links: [
       { label: "GitHub", url: "https://github.com/jp1779/Capstone_Project" },
-      { label: "Report", url: "https://drive.google.com/file/d/1owcMzd3VMgxlZp8xTyLK9ZNRtAJaeg0-/view" }
+      { label: "Writeup", url: "https://drive.google.com/file/d/1owcMzd3VMgxlZp8xTyLK9ZNRtAJaeg0-/view" }
     ]
   },
   {
@@ -188,7 +188,7 @@ const projects = [
     stack: ["SQL", "SQL Server 2022", "Relational Databases", "Data Modeling", "Analytics"],
     links: [
       { label: "GitHub", url: "https://github.com/Aopandey/5NF-Counts-of-Bushels-Project" },
-      { label: "Report", url: "https://drive.google.com/file/d/11g0LNbEw1lXqfwNd4_bknOUOafn1h8pD/view" }
+      { label: "Writeup", url: "https://drive.google.com/file/d/11g0LNbEw1lXqfwNd4_bknOUOafn1h8pD/view" }
     ]
   }
 ];
@@ -583,11 +583,6 @@ function openProject(projectId) {
         <h2>${escapeHtml(project.title)}</h2>
         <p>${escapeHtml(project.summary)}</p>
       </div>
-
-      <section class="case-study-section">
-        <h3>Overview</h3>
-        <p>${escapeHtml(project.summary)}</p>
-      </section>
 
       <section class="case-study-section">
         <h3>Problem</h3>
