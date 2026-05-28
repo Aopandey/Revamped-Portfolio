@@ -54,7 +54,8 @@ const projects = [
       "Data Visualization"
     ],
     links: [
-      { label: "GitHub", url: "https://github.com/Aopandey/Research-Paper-Analyzer" }
+      { label: "GitHub", url: "https://github.com/Aopandey/Research-Paper-Analyzer" },
+      { label: "Report", url: "https://drive.google.com/file/d/1P7V19IM9IuX5c2VeYuBFIIGPdsXjTAQX/view?usp=sharing" }
     ]
   },
   {
