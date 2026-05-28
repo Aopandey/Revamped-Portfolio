@@ -1201,9 +1201,18 @@ p {
   transition: transform 240ms ease, filter 240ms ease;
 }
 
+.personal-grid figure:nth-child(4) img {
+  transform: scale(0.9);
+  border-radius: calc(var(--radius) - 2px);
+}
+
 .personal-grid figure:hover img {
   transform: scale(1.025);
   filter: saturate(1.08);
+}
+
+.personal-grid figure:nth-child(4):hover img {
+  transform: scale(0.93);
 }
 
 .personal-grid figcaption {
