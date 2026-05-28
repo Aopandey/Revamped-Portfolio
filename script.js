@@ -9,8 +9,8 @@ const projects = [
       "An end-to-end AI pipeline for collecting, parsing, retrieving, summarizing, and analyzing 2,600+ ICML 2024 research papers.",
     problem:
       "Researchers, founders, and technical readers need a faster way to explore dense AI conference proceedings by topic, author, institution, and trend.",
-    built:
-      "Collected and parsed ICML papers, indexed content with FAISS and ChromaDB, used Gemini 1.5 Flash for summarization and classification, and built dashboard views for exploration.",
+      built:
+  "Collected and parsed ICML papers, indexed paper content with FAISS and ChromaDB, used Gemini 1.5 Flash for summarization and classification, and built dashboard views for exploring topics, authors, institutions, and trends.",
     details: [
       "Used PDF extraction and preprocessing to prepare a large research corpus.",
       "Implemented retrieval workflows with FAISS and ChromaDB.",
@@ -27,7 +27,7 @@ const projects = [
     impact: [
       "Processed and analyzed 2,600+ ICML 2024 papers through an end-to-end collection, retrieval, summarization, and dashboard workflow.",
       "Surfaced research trends, top contributors, institutions, topic distributions, and research-area correlations.",
-      "Benchmarked retrieval behavior in the technical report, with FAISS showing stronger precision and ChromaDB showing lower-latency retrieval characteristics."
+      "Compared FAISS and ChromaDB retrieval behavior in the technical report to understand tradeoffs in precision, latency, and usability."
     ],
     improvements: [
       "Add layout-aware PDF parsing for tables, figures, and multi-column papers.",
@@ -55,17 +55,17 @@ const projects = [
     ],
     links: [
       { label: "GitHub", url: "https://github.com/Aopandey/Research-Paper-Analyzer" },
-      { label: "Writeup", url: "https://drive.google.com/file/d/1P7V19IM9IuX5c2VeYuBFIIGPdsXjTAQX/view?usp=sharing" }
+      { label: "Technical Report", url: "https://drive.google.com/file/d/1P7V19IM9IuX5c2VeYuBFIIGPdsXjTAQX/view?usp=sharing" }
     ]
   },
   {
     id: "mutual-learning",
     title: "Mutual Learning Algorithm for News Classification",
-    type: "Capstone Project / NLP / Machine Learning",
+    type: "Senior Capstone Project / NLP / Machine Learning",
     dates: "Aug 2024 - Dec 2024",
     categories: ["Machine Learning", "NLP"],
     summary:
-      "A semi-supervised NLP system where heterogeneous models co-teach each other using labeled and unlabeled news data.",
+  "A semi-supervised NLP project that tested how different models can learn from each other using labeled and unlabeled news data.",
     problem:
       "News classification models often have limited labeled data, and pseudo-labeling can either help or reinforce bad predictions.",
     built:
@@ -84,7 +84,7 @@ const projects = [
     impact: [
       "Created a reproducible capstone workflow for studying when heterogeneous NLP models help each other through unlabeled data.",
       "Compared Naive Bayes, SVM, and MLP behavior under mutual-learning and pseudo-labeling setups.",
-      "Produced a report-backed analysis of model pairings, preprocessing decisions, and evaluation tradeoffs."
+      "Documented how model pairings, preprocessing choices, and evaluation metrics affected classification performance."
     ],
     improvements: [
       "Add confidence calibration before accepting pseudo-labels.",
@@ -102,7 +102,7 @@ const projects = [
     ],
     links: [
       { label: "GitHub", url: "https://github.com/jp1779/Capstone_Project" },
-      { label: "Writeup", url: "https://drive.google.com/file/d/1owcMzd3VMgxlZp8xTyLK9ZNRtAJaeg0-/view" }
+      { label: "Report", url: "https://drive.google.com/file/d/1owcMzd3VMgxlZp8xTyLK9ZNRtAJaeg0-/view" }
     ]
   },
   {
@@ -112,7 +112,7 @@ const projects = [
     dates: "Aug 2024 - Nov 2024",
     categories: ["Machine Learning", "Data Engineering"],
     summary:
-      "A supervised ML pipeline for diabetes prediction using a public Kaggle dataset with screening-oriented evaluation.",
+  "A supervised machine learning project for diabetes prediction using a public Kaggle dataset and screening-focused evaluation metrics.",
     problem:
       "In a screening context, model evaluation needs to look beyond accuracy and pay attention to recall, ROC-AUC, and signal interpretability.",
     built:
@@ -134,7 +134,7 @@ const projects = [
       "Identified HbA1c and blood glucose as important predictive signals through model diagnostics."
     ],
     improvements: [
-      "Add probability calibration and decision-threshold analysis for clinical-style screening tradeoffs.",
+      "Add probability calibration and decision-threshold analysis to better understand screening-style tradeoffs.",
       "Package preprocessing and inference into a reproducible pipeline artifact.",
       "Explore interpretable model explanations for patient-facing or analyst-facing review."
     ],
@@ -158,10 +158,10 @@ const projects = [
     type: "SQL / Data Analytics",
     dates: "Aug 2023 - Oct 2023",
     categories: ["Data Engineering"],
-    summary:
-      "A relational database and SQL analytics project for corn and soybean yield data.",
+      summary:
+  "A SQL and database design project for organizing and analyzing corn and soybean yield data.",
     problem:
-      "Agronomic yield analysis needs clean relational structure, documented assumptions, and reusable queries across regions and time windows.",
+  "Yield analysis needs clean data modeling, reusable queries, and documented assumptions so users can compare regions, crops, and time windows accurately.",
     built:
       "Designed a normalized schema, loaded representative records, validated integrity, and created a reusable SQL query suite.",
     details: [
@@ -175,11 +175,12 @@ const projects = [
       "The project required clear assumptions about entities, constraints, and time-window queries.",
       "Validation queries had to confirm both relational integrity and practical analytical usefulness."
     ],
+
     impact: [
-      "Produced a normalized SQL Server database design for corn and soybean yield analysis.",
-      "Created reusable SQL queries for region, yield, and time-window exploration.",
-      "Documented schema decisions so another analyst could understand constraints and edge cases."
-    ],
+  "Designed a normalized SQL Server database for corn and soybean yield analysis.",
+  "Created reusable SQL queries for exploring yields across regions and time windows.",
+  "Documented schema decisions, constraints, and edge cases for reproducibility."
+],
     improvements: [
       "Add a larger real-world dataset and import scripts.",
       "Build a small dashboard layer over the SQL query suite.",
