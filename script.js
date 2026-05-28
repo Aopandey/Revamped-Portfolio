@@ -216,7 +216,7 @@ const skillGroups = [
     ]
   },
   {
-    group: "Data & MLOps",
+    group: "Data, Cloud & MLOps",
     skills: ["PySpark", "Docker", "Kubernetes", "AWS EC2", "AWS S3", "AWS Lambda", "MLflow", "SQL Server", "Git/GitHub"]
   },
   {
@@ -224,7 +224,7 @@ const skillGroups = [
     skills: ["Streamlit", "Tableau", "Power BI", "Matplotlib"]
   },
   {
-    group: "AI Development Tools",
+    group: "AI-Assisted Development",
     skills: ["Cursor", "Claude Code", "GitHub Copilot", "ChatGPT"]
   }
 ];

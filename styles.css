@@ -962,10 +962,16 @@ p {
   width: 58px;
   height: 58px;
   border: 2px solid var(--accent-3);
-  color: var(--accent-3);
-  background: color-mix(in srgb, var(--surface-2) 80%, transparent);
+  overflow: hidden;
+  background: #fff;
   border-radius: var(--radius);
-  font-weight: 950;
+}
+
+.school-mark img {
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  object-fit: contain;
 }
 
 .education-card h3 {
@@ -1110,6 +1116,100 @@ p {
 
 .award-card p {
   margin-bottom: 0;
+}
+
+.leadership-heading h2 {
+  font-size: clamp(1.7rem, 3.6vw, 2.45rem);
+}
+
+.leadership-heading p:not(.eyebrow) {
+  max-width: 430px;
+}
+
+.award-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.award-tags span {
+  display: inline-flex;
+  margin: 0;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  background: color-mix(in srgb, var(--surface-2) 82%, transparent);
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 760;
+}
+
+.personal-section {
+  padding-top: 54px;
+  padding-bottom: 54px;
+}
+
+.personal-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1fr);
+  gap: 34px;
+  align-items: center;
+  padding: 24px;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 10%, transparent), transparent 42%),
+    color-mix(in srgb, var(--surface) 88%, transparent);
+  border-radius: var(--radius);
+}
+
+.personal-copy h2 {
+  margin: 0;
+  font-size: clamp(1.75rem, 4vw, 2.7rem);
+}
+
+.personal-copy p:not(.eyebrow) {
+  color: var(--muted);
+}
+
+.personal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.personal-grid figure {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  aspect-ratio: 1 / 1;
+  background: var(--surface-2);
+}
+
+.personal-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 240ms ease, filter 240ms ease;
+}
+
+.personal-grid figure:hover img {
+  transform: scale(1.04);
+  filter: saturate(1.08);
+}
+
+.personal-grid figcaption {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  padding: 6px 9px;
+  color: #21130a;
+  background: linear-gradient(135deg, var(--accent), var(--accent-3));
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 850;
 }
 
 .contact-section {
@@ -1434,6 +1534,7 @@ p {
   .split-section,
   .two-column-section,
   .contact-layout,
+  .personal-layout,
   .education-grid,
   .skill-layout {
     grid-template-columns: 1fr;
@@ -1525,7 +1626,8 @@ p {
   }
 
   .contact-method,
-  .message-form {
+  .message-form,
+  .personal-layout {
     padding: 18px;
   }
 
