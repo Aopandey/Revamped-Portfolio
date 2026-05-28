@@ -60,6 +60,7 @@
           <a href="#research">Research</a>
           <a href="#projects">Projects</a>
           <a href="#experience">Experience</a>
+          <a href="#education">Education</a>
           <a href="#skills">Skills</a>
           <a href="#contact">Contact</a>
         </div>
@@ -231,42 +232,99 @@
         <div class="project-grid" data-project-grid aria-live="polite"></div>
       </section>
 
-      <section class="section split-section" id="experience">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Experience & Education</p>
-          <h2>Applied research, data workflows, and a strong CS foundation.</h2>
+      <section class="section experience-section" id="experience">
+        <div class="center-heading reveal">
+          <p class="eyebrow">Experience</p>
+          <h2>Professional Experience</h2>
+          <p>A timeline of applied AI research, data workflows, and technical roles.</p>
         </div>
-        <div class="timeline reveal">
-          <article class="timeline-item">
-            <span class="timeline-date">February 2025 - February 2026</span>
-            <h3>Research Assistant · Purdue University</h3>
-            <p class="muted">Indianapolis, IN</p>
+        <div class="experience-timeline reveal">
+          <article class="experience-entry">
+            <div class="experience-date">February 2025<br>- February 2026</div>
+            <div class="experience-content">
+              <h3>Research Assistant</h3>
+              <p class="experience-org">Purdue University</p>
+              <p class="experience-meta">Indianapolis, IN &middot; Advisors: Dr. Snehasis Mukhopadhyay and Dr. Alexey Kuznetsov</p>
             <ul>
-              <li>Designed a multi-LLM biomedical summarization pipeline using Google Gemini 2.0 Flash and GPT-4o-mini.</li>
-              <li>Built asynchronous retrieval and metadata enrichment with PubMed Entrez and NIH iCite.</li>
-              <li>Developed citation-aware ranking with ontology-guided keyword extraction, cosine similarity, and RCR.</li>
-              <li>Evaluated with ROUGE, BERTScore, ablation studies, and a 10-user study.</li>
+                <li>Designed a multi-LLM biomedical summarization pipeline using Google Gemini 2.0 Flash and GPT-4o-mini, achieving BERTScore-F1 of 0.86 across 20 biomedical queries.</li>
+                <li>Built asynchronous retrieval and metadata enrichment with PubMed Entrez and NIH iCite to collect article metadata, citation signals, and relevance features.</li>
+                <li>Developed citation-aware ranking using ontology-guided keyword extraction, cosine similarity, and Relative Citation Ratio to surface high-value papers.</li>
+                <li>Ran ranking and retrieval ablations comparing TF-IDF, BM25, ontology-constrained keywording, and hybrid citation-similarity scoring.</li>
+                <li>Built a Streamlit research interface for query input, candidate paper review, ranked result inspection, and summary generation.</li>
+                <li>Evaluated the system with ROUGE, BERTScore, ablation studies, and a 10-user study; documented findings in a first-author biomedical AI preprint.</li>
             </ul>
+              <div class="timeline-tags">
+                <span>LLMs</span>
+                <span>RAG</span>
+                <span>PubMed Entrez</span>
+                <span>NIH iCite</span>
+                <span>Ranking</span>
+                <span>Evaluation</span>
+                <span>Streamlit</span>
+              </div>
+            </div>
           </article>
-          <article class="timeline-item">
-            <span class="timeline-date">Dec 2023 - Mar 2024</span>
-            <h3>Business Analyst Intern · Legislative Services Agency</h3>
-            <p class="muted">Indianapolis, IN</p>
+          <article class="experience-entry">
+            <div class="experience-date">December 2023<br>- March 2024</div>
+            <div class="experience-content">
+              <h3>Business Analyst Intern</h3>
+              <p class="experience-org">Legislative Services Agency</p>
+              <p class="experience-meta">Indianapolis, IN</p>
             <ul>
-              <li>Designed ETL workflows to validate and preprocess Indiana General Assembly datasets.</li>
-              <li>Achieved 98% accuracy across legislative bill and report datasets.</li>
-              <li>Built SQL Server workflows and Tableau/Power BI reporting views for analysts and stakeholders.</li>
+                <li>Designed and managed ETL pipelines to validate and preprocess Indiana General Assembly datasets, achieving 98% accuracy across legislative bill and report datasets.</li>
+                <li>Developed and optimized SQL-based workflows, improving extraction, transformation, and loading efficiency within SQL Server.</li>
+                <li>Collaborated with Business Analysts and Software Developers to enhance BI workflows using Tableau and Power BI for data reporting and analysis.</li>
+                <li>Provided technical support for data integration issues, ensuring reliable access to structured legislative data sources.</li>
             </ul>
+              <div class="timeline-tags">
+                <span>ETL</span>
+                <span>SQL Server</span>
+                <span>Data Validation</span>
+                <span>Tableau</span>
+                <span>Power BI</span>
+                <span>BI Workflows</span>
+              </div>
+            </div>
           </article>
-          <article class="timeline-item education-item">
-            <span class="timeline-date">Incoming Fall 2026 · Expected May 2028</span>
-            <h3>M.S. Artificial Intelligence · Northeastern University</h3>
-            <p class="muted">Planned coursework: Foundations of Artificial Intelligence; Linear Algebra and Probability for Data Science.</p>
+        </div>
+      </section>
+
+      <section class="section education-section" id="education">
+        <div class="center-heading reveal">
+          <p class="eyebrow">Education</p>
+          <h2>Education</h2>
+          <p>Academic foundation across AI, computer science, data systems, and applied ML.</p>
+        </div>
+        <div class="education-grid reveal">
+          <article class="education-card">
+            <div class="school-mark">NU</div>
+            <div>
+              <h3>Master of Science in Artificial Intelligence</h3>
+              <p class="education-org">Northeastern University</p>
+              <p class="education-meta">Boston, MA &middot; Incoming Fall 2026 - Expected May 2028</p>
+              <div class="coursework">
+                <span>Foundations of Artificial Intelligence</span>
+                <span>Linear Algebra and Probability for Data Science</span>
+              </div>
+            </div>
           </article>
-          <article class="timeline-item education-item">
-            <span class="timeline-date">Graduated Dec 2024</span>
-            <h3>B.S. Computer Science · Purdue University</h3>
-            <p class="muted">GPA: 3.3/4.0 · Coursework: Artificial Intelligence, Data Science, Database Systems, Operating Systems, Linear Algebra, Theory of Computation, Probability and Statistics.</p>
+          <article class="education-card">
+            <div class="school-mark">PU</div>
+            <div>
+              <h3>Bachelor of Science in Computer Science</h3>
+              <p class="education-org">Purdue University</p>
+              <p class="education-meta">Indianapolis, IN &middot; Graduated December 2024</p>
+              <p class="gpa-pill">GPA: 3.3/4.0</p>
+              <div class="coursework">
+                <span>Artificial Intelligence</span>
+                <span>Data Science</span>
+                <span>Database Systems</span>
+                <span>Operating Systems</span>
+                <span>Linear Algebra</span>
+                <span>Theory of Computation</span>
+                <span>Probability and Statistics</span>
+              </div>
+            </div>
           </article>
         </div>
       </section>
