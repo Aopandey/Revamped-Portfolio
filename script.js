@@ -1,5 +1,75 @@
 const projects = [
   {
+    id: "world-cup-xg-lab",
+    title: "World Cup xG Lab",
+    type: "Full-Stack Football Analytics / ML Dashboard",
+    dates: "May 2026 - June 2026",
+    categories: ["Machine Learning", "Data Engineering", "Sports Analytics", "Full-Stack", "MLOps"],
+    summary:
+      "A full-stack football analytics dashboard for exploring 2026 World Cup teams and players through historical xG, squad context, and source-aware scouting data.",
+    problem:
+      "Football fans often see xG numbers without knowing where the data comes from, how reliable the sample is, or whether it reflects current player form.",
+    built:
+      "Built a deployed dashboard that combines a StatsBomb-trained XGBoost expected goals model with recent player context from FBref, Understat, and DataMB while clearly separating historical model output from external source context.",
+    details: [
+      "Built a complete football analytics product from data ingestion to a deployed dashboard.",
+      "Trained a Logistic Regression xG baseline and an XGBoost xG model using historical StatsBomb shot data.",
+      "Selected XGBoost as the dashboard model based on log loss, Brier score, ROC-AUC, and accuracy.",
+      "Created FastAPI endpoints that serve precomputed JSON dashboard artifacts to a Next.js frontend.",
+      "Added confirmed 2026 World Cup squad filtering, team profile pages, player profile pages, and a Player xG Explorer.",
+      "Separated StatsBomb historical xG output from FBref recent league form, Understat club xG context, and DataMB scouting percentiles.",
+      "Built team evidence states and weak-sample warnings so users can tell when data is strong, limited, or missing.",
+      "Deployed the full-stack app with Docker Compose, Caddy, DuckDNS, and AWS EC2."
+    ],
+    challenges: [
+      "StatsBomb open data provides high-quality shot-level samples, but coverage varies heavily by team and player.",
+      "Many confirmed 2026 World Cup players have weak or missing historical shot samples, so the product needed explicit evidence labels instead of overconfident rankings.",
+      "External context sources answer different questions, so the dashboard needed to separate model output from FBref, Understat, and DataMB context layers.",
+      "The app needed precomputed artifacts and simple API responses to keep the dashboard fast and reliable on a small cloud deployment.",
+      "The product needed to explain xG honestly as past available evidence, not a betting tool or guaranteed 2026 World Cup prediction model."
+    ],
+    impact: [
+      "Delivered a live deployed analytics product that combines machine learning, data engineering, frontend UX, API design, and cloud deployment.",
+      "Made expected goals analysis more accessible through team selectors, profile pages, model explanations, and coverage/trust labels.",
+      "Included clear guidance that the dashboard shows past available open-data samples and external club context, not a 2026 World Cup prediction model.",
+      "Created a source-aware dashboard that helps users explore chance creation without mistaking historical evidence for future predictions.",
+      "Packaged the app for repeatable deployment using Docker Compose on AWS EC2."
+    ],
+    improvements: [
+      "Add more robust Understat-only and combined-source model experiments.",
+      "Improve shot maps and visual explanations of model inputs.",
+      "Expand current-season coverage and source refresh workflows.",
+      "Add licensed player images if an appropriate data source is available.",
+      "Continue improving calibration checks and model evaluation."
+    ],
+    pipeline: [
+      "StatsBomb Shots",
+      "Feature Engineering",
+      "Model Training",
+      "JSON Artifacts",
+      "FastAPI",
+      "Next.js Dashboard",
+      "Docker/AWS EC2"
+    ],
+    stack: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "FastAPI",
+      "Python",
+      "XGBoost",
+      "MLflow",
+      "Docker",
+      "AWS EC2",
+      "StatsBomb"
+    ],
+    links: [
+      { label: "Live Dashboard", url: "https://worldcupxglab.duckdns.org/" },
+      { label: "GitHub", url: "https://github.com/Aopandey/World-Cup-xG-Lab" }
+    ]
+  },
+  {
     id: "icml",
     title: "ICML 2024 Research Paper Analyzer",
     type: "Personal Project / LLM-RAG Pipeline",
@@ -197,7 +267,7 @@ const projects = [
 const skillGroups = [
   {
     group: "Languages",
-    skills: ["Python", "SQL", "Java", "R"]
+    skills: ["Python", "SQL", "Java", "R", "TypeScript"]
   },
   {
     group: "AI/ML",
@@ -218,26 +288,30 @@ const skillGroups = [
   },
   {
     group: "Data, Cloud & MLOps",
-    skills: ["PySpark", "Docker", "Kubernetes", "AWS EC2", "AWS S3", "AWS Lambda", "MLflow", "SQL Server", "Git/GitHub"]
+    skills: ["PySpark", "Docker", "Docker Compose", "Kubernetes", "AWS EC2", "AWS S3", "AWS Lambda", "MLflow", "SQL Server", "Git/GitHub"]
+  },
+  {
+    group: "Full-Stack",
+    skills: ["Next.js", "React", "Tailwind CSS", "FastAPI"]
   },
   {
     group: "Visualization & Apps",
-    skills: ["Streamlit", "Tableau", "Power BI", "Matplotlib"]
+    skills: ["Streamlit", "Tableau", "Power BI", "Matplotlib", "Plotly"]
   },
   {
     group: "AI-Assisted Development",
-    skills: ["Cursor", "Claude Code", "GitHub Copilot", "ChatGPT"]
+    skills: ["Codex", "Cursor", "Claude Code", "GitHub Copilot", "ChatGPT"]
   }
 ];
 
 const skillMap = {
-  Python: ["icml", "mutual-learning", "diabetes"],
+  Python: ["world-cup-xg-lab", "icml", "mutual-learning", "diabetes"],
   SQL: ["bushels"],
   "SQL Server": ["bushels"],
   "SQL Server 2022": ["bushels"],
-  "scikit-learn": ["mutual-learning", "diabetes"],
-  NumPy: ["mutual-learning", "diabetes"],
-  Pandas: ["icml", "mutual-learning", "diabetes"],
+  "scikit-learn": ["world-cup-xg-lab", "mutual-learning", "diabetes"],
+  NumPy: ["world-cup-xg-lab", "mutual-learning", "diabetes"],
+  Pandas: ["world-cup-xg-lab", "icml", "mutual-learning", "diabetes"],
   SciPy: ["diabetes"],
   LangChain: ["icml"],
   "OpenAI API": [],
@@ -247,23 +321,31 @@ const skillMap = {
   ChromaDB: ["icml"],
   "Retrieval-Augmented Generation": ["icml"],
   "Prompt Engineering": ["icml"],
-  Streamlit: ["icml"],
+  Streamlit: ["world-cup-xg-lab", "icml"],
   Tableau: [],
   "Power BI": [],
-  Docker: [],
+  Docker: ["world-cup-xg-lab"],
+  "Docker Compose": ["world-cup-xg-lab"],
   Kubernetes: [],
-  MLflow: [],
-  "Git/GitHub": ["icml", "mutual-learning", "diabetes", "bushels"],
+  MLflow: ["world-cup-xg-lab"],
+  "Git/GitHub": ["world-cup-xg-lab", "icml", "mutual-learning", "diabetes", "bushels"],
   PyTorch: [],
-  XGBoost: [],
+  XGBoost: ["world-cup-xg-lab"],
   "Hugging Face Transformers": [],
   PySpark: [],
-  "AWS EC2": [],
+  "AWS EC2": ["world-cup-xg-lab"],
   "AWS S3": [],
   "AWS Lambda": [],
   Java: [],
   R: [],
-  Matplotlib: ["diabetes"],
+  TypeScript: ["world-cup-xg-lab"],
+  "Next.js": ["world-cup-xg-lab"],
+  React: ["world-cup-xg-lab"],
+  "Tailwind CSS": ["world-cup-xg-lab"],
+  FastAPI: ["world-cup-xg-lab"],
+  Plotly: ["world-cup-xg-lab"],
+  Matplotlib: ["world-cup-xg-lab", "diabetes"],
+  Codex: ["world-cup-xg-lab"],
   Cursor: [],
   "Claude Code": [],
   "GitHub Copilot": [],
@@ -275,6 +357,7 @@ const skillEvidence = {
     { type: "Project", projectId: "icml", detail: "Data collection, PDF parsing, retrieval, summarization, and dashboard workflows." },
     { type: "Project", projectId: "mutual-learning", detail: "NLP preprocessing and semi-supervised model experiments." },
     { type: "Project", projectId: "diabetes", detail: "EDA, class balancing, model benchmarking, and diagnostics." },
+    { type: "Project", projectId: "world-cup-xg-lab", detail: "FastAPI services, data pipelines, xG model training, and JSON dashboard artifacts." },
     { type: "Research", label: "Biomedical literature summarization", detail: "Retrieval, metadata enrichment, ranking, and evaluation pipeline work." }
   ],
   SQL: [
@@ -283,18 +366,22 @@ const skillEvidence = {
   ],
   Java: [{ type: "Coursework", label: "Purdue CS foundation", detail: "Core programming and CS coursework background." }],
   R: [{ type: "Coursework", label: "Statistics and data coursework", detail: "Probability, statistics, and data-analysis foundation." }],
+  TypeScript: [{ type: "Project", projectId: "world-cup-xg-lab", detail: "Typed frontend implementation for the Next.js dashboard." }],
   PyTorch: [{ type: "Coursework", label: "AI/ML toolkit", detail: "Part of the broader ML framework stack for research and engineering roles." }],
   "scikit-learn": [
+    { type: "Project", projectId: "world-cup-xg-lab", detail: "Logistic Regression baseline, model evaluation, and preprocessing support." },
     { type: "Project", projectId: "mutual-learning", detail: "Naive Bayes, SVM, MLP, and classification metrics." },
     { type: "Project", projectId: "diabetes", detail: "Decision Tree, Random Forest, SVM, MLP, ROC-AUC, and recall analysis." }
   ],
-  XGBoost: [{ type: "Toolkit", label: "AI/ML modeling toolkit", detail: "Tree-based modeling skill aligned with supervised ML pipeline work." }],
+  XGBoost: [{ type: "Project", projectId: "world-cup-xg-lab", detail: "Expected goals model selected using log loss, Brier score, ROC-AUC, and accuracy." }],
   "Hugging Face Transformers": [{ type: "Toolkit", label: "Transformer NLP toolkit", detail: "Relevant to LLM, summarization, and NLP systems work." }],
   NumPy: [
+    { type: "Project", projectId: "world-cup-xg-lab", detail: "Numerical feature preparation and model-evaluation workflows." },
     { type: "Project", projectId: "mutual-learning", detail: "Feature processing and model-evaluation utilities." },
     { type: "Project", projectId: "diabetes", detail: "Numerical processing for supervised ML experiments." }
   ],
   Pandas: [
+    { type: "Project", projectId: "world-cup-xg-lab", detail: "StatsBomb, squad, FBref, Understat, and DataMB artifact preparation." },
     { type: "Project", projectId: "icml", detail: "Metadata tables and research-paper analysis." },
     { type: "Project", projectId: "mutual-learning", detail: "Dataset preparation and evaluation tables." },
     { type: "Project", projectId: "diabetes", detail: "EDA, cleaning, and feature preparation." },
@@ -325,12 +412,16 @@ const skillEvidence = {
     { type: "Research", label: "Biomedical literature summarization", detail: "Retrieval, ranking, summarization, and evaluation pipeline." }
   ],
   PySpark: [{ type: "Toolkit", label: "Scalable data toolkit", detail: "Relevant to large-data ETL and data/ML pipeline roles." }],
-  Docker: [{ type: "Project", projectId: "icml", detail: "Technical report describes local LLM experiments with Ollama containers." }],
+  Docker: [
+    { type: "Project", projectId: "world-cup-xg-lab", detail: "Containerized the full-stack app for deployment." },
+    { type: "Project", projectId: "icml", detail: "Technical report describes local LLM experiments with Ollama containers." }
+  ],
+  "Docker Compose": [{ type: "Project", projectId: "world-cup-xg-lab", detail: "Orchestrated frontend, backend, and Caddy deployment services." }],
   Kubernetes: [{ type: "Toolkit", label: "MLOps toolkit", detail: "Deployment-oriented skill aligned with scalable AI/ML systems." }],
-  "AWS EC2": [{ type: "Toolkit", label: "Cloud compute toolkit", detail: "Relevant to hosting data and model workflows." }],
+  "AWS EC2": [{ type: "Project", projectId: "world-cup-xg-lab", detail: "Hosted the deployed dashboard on an EC2 instance." }],
   "AWS S3": [{ type: "Toolkit", label: "Cloud storage toolkit", detail: "Relevant to storing datasets, model artifacts, and pipeline outputs." }],
   "AWS Lambda": [{ type: "Toolkit", label: "Serverless toolkit", detail: "Relevant to event-driven data processing and lightweight automation." }],
-  MLflow: [{ type: "Toolkit", label: "MLOps toolkit", detail: "Experiment tracking skill aligned with model benchmarking workflows." }],
+  MLflow: [{ type: "Project", projectId: "world-cup-xg-lab", detail: "Tracked xG model experiments and evaluation metrics." }],
   "SQL Server": [
     { type: "Project", projectId: "bushels", detail: "Relational database implementation." },
     { type: "Experience", label: "Legislative Services Agency", detail: "SQL Server ETL and BI workflows." }
@@ -338,27 +429,36 @@ const skillEvidence = {
   "SQL Server 2022": [{ type: "Project", projectId: "bushels", detail: "Primary database platform for the normalized schema project." }],
   "Git/GitHub": [
     { type: "Project", projectId: "icml", detail: "Repository-linked research-paper analyzer." },
+    { type: "Project", projectId: "world-cup-xg-lab", detail: "Repository-linked full-stack football analytics dashboard." },
     { type: "Project", projectId: "mutual-learning", detail: "Capstone repository and report artifacts." },
     { type: "Project", projectId: "diabetes", detail: "Final project repository." },
     { type: "Project", projectId: "bushels", detail: "Database project repository." }
   ],
   Streamlit: [
+    { type: "Project", projectId: "world-cup-xg-lab", detail: "Early prototyping for football analytics views." },
     { type: "Project", projectId: "icml", detail: "Dashboard interface for research-paper exploration." },
     { type: "Research", label: "Biomedical literature summarization", detail: "Prototype interface for retrieval and summary workflows." }
   ],
   Tableau: [{ type: "Experience", label: "Legislative Services Agency", detail: "BI reporting and analysis workflows." }],
   "Power BI": [{ type: "Experience", label: "Legislative Services Agency", detail: "Reporting and dashboard support for structured datasets." }],
   Matplotlib: [
+    { type: "Project", projectId: "world-cup-xg-lab", detail: "Model and data-science visualization during analysis." },
     { type: "Project", projectId: "diabetes", detail: "EDA and model diagnostic visualizations." },
     { type: "Project", projectId: "icml", detail: "Technical report describes PyPlot/Seaborn dashboard visualizations." }
   ],
+  Plotly: [{ type: "Project", projectId: "world-cup-xg-lab", detail: "Interactive dashboard visualizations for team and player analysis." }],
+  "Next.js": [{ type: "Project", projectId: "world-cup-xg-lab", detail: "Frontend framework for the deployed dashboard." }],
+  React: [{ type: "Project", projectId: "world-cup-xg-lab", detail: "Component-based dashboard UI for team and player exploration." }],
+  "Tailwind CSS": [{ type: "Project", projectId: "world-cup-xg-lab", detail: "Frontend styling system for the dashboard." }],
+  FastAPI: [{ type: "Project", projectId: "world-cup-xg-lab", detail: "Backend API serving precomputed dashboard artifacts." }],
+  Codex: [{ type: "Project", projectId: "world-cup-xg-lab", detail: "AI-assisted development workflow for implementation and iteration." }],
   Cursor: [{ type: "Toolkit", label: "AI development workflow", detail: "Used as part of the modern AI-assisted engineering toolkit." }],
   "Claude Code": [{ type: "Toolkit", label: "AI development workflow", detail: "Used for codebase iteration, debugging, and implementation support." }],
   "GitHub Copilot": [{ type: "Toolkit", label: "AI development workflow", detail: "Assistant-based development tool for faster coding workflows." }],
   ChatGPT: [{ type: "Toolkit", label: "AI development workflow", detail: "Used for research, drafting, debugging, and technical planning." }]
 };
 
-const categories = ["All", "LLM/RAG", "Machine Learning", "Data Engineering", "NLP"];
+const categories = ["All", "LLM/RAG", "Machine Learning", "Data Engineering", "Sports Analytics", "Full-Stack", "MLOps", "NLP"];
 
 const dom = {
   header: document.querySelector("[data-header]"),
