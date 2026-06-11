@@ -458,7 +458,7 @@ const skillEvidence = {
   ChatGPT: [{ type: "Toolkit", label: "AI development workflow", detail: "Used for research, drafting, debugging, and technical planning." }]
 };
 
-const categories = ["All", "LLM/RAG", "Machine Learning", "Data Engineering", "Sports Analytics", "Full-Stack", "MLOps", "NLP"];
+const categories = ["All", "LLM/RAG", "Machine Learning", "Data Engineering", "NLP"];
 
 const dom = {
   header: document.querySelector("[data-header]"),
